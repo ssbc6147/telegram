@@ -14,3 +14,15 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+@font-face {
+  font-family: 'Billabong';
+  src: font-url('Billabong.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.logo{
+  font-family: 'Billabong', cursive;
+  font-size: 2rem;
+}
