@@ -30,6 +30,8 @@ services:
     volumes:
       - "mysql-data:/var/lib/mysql"
     # mysqlのパスワードの暗号化をRailsで参照出来る形式に変更
+    ports:
+      - 3306:3306
     command: mysqld --default-authentication-plugin=mysql_native_password
 volumes:
   mysql-data:
