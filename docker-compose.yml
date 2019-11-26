@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+  app:
+    build:
+      # Dockerfileの場所を指定
+      context: docker/app/
+      # build時に使用する環境変数を指定
+      args:
+        WORK_DIR: $WORK_DIR
+    # マウントするディレクトリを指定
+    volumes:
+      - .:${WORK_DIR}
+      # マウント対象外のディレクトリ(コンテナ内に保存)
+      - ${WORK_DIR}/tmp
+      - ${WORK_DIR}/log
+      - ${WORK_DIR}/.git
+    # appコンテナとmacのport番号3000番を接続
+    ports:
+      - 3000:3000
+    # 連携するコンテナを指定(これでappを起動する前にdbを起動する)
+    depends_on:
+      - db
+  db:
+    # Dockerfileの相対Path
+    build: docker/db/
+    # 環境変数としてパスワードを設定
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    # データの保存場所を設定
+    volumes:
+      - "mysql-data:/var/lib/mysql"
+    # mysqlのパスワードの暗号化をRailsで参照出来る形式に変更
+    command: mysqld --default-authentication-plugin=mysql_native_password
+volumes:
+  mysql-data:
