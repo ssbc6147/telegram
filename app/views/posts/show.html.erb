@@ -1,0 +1,18 @@
+<div class="col-lg-10 mx-auto">
+  <div class="card">
+    <div class="row no-gutters">
+      <div class="col-lg-8">
+        <% if @post.image.attached? %>
+          <%= image_tag @post.image.variant(combine_options: { resize: "800x800^", crop: "800x800+0+0", gravity: :center }).processed, class: "card-img" %>
+        <% else %>
+          <%= image_tag "no_image", class: "card-img" %>
+        <% end %>
+      </div>
+      <div class="col-lg-4">
+        <div class="card-body scroll">
+          <%= @post.caption %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
