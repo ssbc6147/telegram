@@ -7,7 +7,9 @@
       <a class="nav-link" href="/"><i class="fas fa-search"></i></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/"><i class="far fa-plus-square"></i></a>
+      <%= link_to new_post_path, class: "nav-link" do %>
+        <i class="far fa-plus-square"></i>
+      <% end %>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/"><i class="far fa-user"></i></a>
