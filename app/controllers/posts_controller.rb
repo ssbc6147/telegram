@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.save
-    redirect_to @post
+    redirect_to @post, notice: '投稿を保存しました'
   end
 
   def show
