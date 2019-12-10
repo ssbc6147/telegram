@@ -12,7 +12,15 @@
       <% end %>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/"><i class="far fa-user"></i></a>
+      <% if user_signed_in? %>
+        <%= link_to edit_user_registration_path, class: "nav-link" do %>
+          <i class="far fa-user"></i>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, class: "nav-link" do %>
+          <i class="far fa-user"></i>
+        <% end %>
+      <% end %>
     </li>
   </ul>
 </nav>

@@ -16,7 +16,15 @@
       <input name="utf8" type="hidden" value="&#x2713;" >
       <input type="text" name="q" id="q" value="" class="form-control fas" placeholder="検索" >
     </form>
-    <a class="nav-item far" href="/"><i class="far fa-user"></i></a>
+    <% if user_signed_in? %>
+      <%= link_to edit_user_registration_path, class: "nav-item" do %>
+        <i class="far fa-user"></i>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path, class: "nav-item" do %>
+        <i class="far fa-user"></i>
+      <% end %>
+    <% end %>
   </div>
 
 </nav>
