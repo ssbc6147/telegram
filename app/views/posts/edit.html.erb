@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-10 mx-auto">
+    <div class="logo col-lg-12 mb-3 text-center">
+      <h1>Edit Post</h1>
+    </div>
+
+    <div class="card">
+      <div class="row no-gutters">
+        <div class="col-lg-6">
+          <% if @post.image.attached? %>
+            <%= image_tag @post.image.variant(combine_options: { resize: "800x800^", crop: "800x800+0+0", gravity: :center }).processed, class: "card-img" %>
+          <% else %>
+            <%= image_tag "no_image", class: "card-img" %>
+          <% end %>
+        </div>
+
+        <div class="col-lg-6 card-cody">
+          <%= render "form", post: @post %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
