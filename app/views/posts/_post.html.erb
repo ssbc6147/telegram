@@ -1,0 +1,13 @@
+<div class="card mb-5">
+  <%= link_to post do  %>
+    <!-- mini_magickのメソッドを使用して画像サイズを変更して表示 -->
+    <% if post.image.attached? %>
+      <%= image_tag post.image.variant(combine_options: { resize: "800x800^", crop: "800x800+0+0", gravity: :center }).processed, class: "card-img" %>
+    <% else %>
+      <%= image_tag "no_image", class: "card-img" %>
+    <% end %>
+  <% end %>
+  <div class="card-text">
+    <p><%= truncate(post.caption, length: 90) %></p>
+  </div>
+</div>
