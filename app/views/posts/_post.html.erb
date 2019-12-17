@@ -1,4 +1,12 @@
 <div class="card mb-5">
+  <div class="card-header bg-transparent">
+    <% if post.user.avatar.attached? %>
+      <%= image_tag post.user.avatar.variant(combine_options: { resize: "32x32^", crop: "32x32+0+0", gravity: :center}).processed, class: "img-fluid rounded-circle" %>
+    <% else %>
+      <%= image_tag "no_image", class: "img-fluid rounded-circle" %>
+    <% end %>
+    <%= post.user.name %>
+  </div>
   <%= link_to post do  %>
     <!-- mini_magickのメソッドを使用して画像サイズを変更して表示 -->
     <% if post.image.attached? %>
