@@ -10,6 +10,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/header" %>
+    <div class="container mb-5">
+      <div class="row">
+        <div class="col-md-12">
+          <%= render "shared/flash" %>
+        </div>
+      </div>
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+    <%= render "shared/footer" %>
   </body>
 </html>

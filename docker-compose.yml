@@ -9,7 +9,7 @@ services:
         WORK_DIR: $WORK_DIR
     # マウントするディレクトリを指定
     volumes:
-      - .:${WORK_DIR}
+      - .:${WORK_DIR}:cached
       # マウント対象外のディレクトリ(コンテナ内に保存)
       - ${WORK_DIR}/tmp
       - ${WORK_DIR}/log

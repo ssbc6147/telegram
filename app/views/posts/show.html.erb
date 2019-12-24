@@ -1,0 +1,37 @@
+<div class="col-lg-10 mx-auto">
+  <div class="card">
+    <div class="row no-gutters">
+      <div class="col-lg-8">
+        <% if @post.image.attached? %>
+          <%= image_tag @post.image.variant(combine_options: { resize: "800x800^", crop: "800x800+0+0", gravity: :center }).processed, class: "card-img" %>
+        <% else %>
+          <%= image_tag "no_image", class: "card-img" %>
+        <% end %>
+      </div>
+      <div class="col-lg-4">
+        <div class="card-body">
+          <% if @post.user.avatar.attached? %>
+            <%= image_tag @post.user.avatar.variant(combine_options: { resize: "32x32^", crop: "32x32+0+0", gravity: :center}).processed, class: "img-fluid rounded-circle" %>
+          <% else %>
+            <%= image_tag "no_image", class: "img-fluid rounded-circle" %>
+          <% end %>
+          <%= @post.user.name %>
+          <hr>
+          <div class="scroll">
+            <%= @post.caption %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if user_signed_in? && current_user.id == @post.user_id %>
+    <p>
+      <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-block btn-primary" %>
+    </p>
+    <p>
+      <%= button_tag "削除", class: "btn btn-block btn-warning", data: { toggle: "modal", target: "#delete-post" } %>
+    </p>
+  <% end %>
+</div>
+
+<%= render "delete_modal", post: @post %>

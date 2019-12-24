@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    attributes:
+      comment:
+        body: コメント
+      post:
+        caption: 説明
+        image: 投稿画像
+        new_image: 投稿画像
+      user:
+        avatar: プロフィール画像
+        description: 自己紹介
+        email: メールアドレス
+        name: 名前
+        new_avatar: プロフィール画像
+        password: パスワード
+        username: ユーザー名
