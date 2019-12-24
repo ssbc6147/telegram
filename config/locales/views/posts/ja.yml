@@ -6,6 +6,7 @@ ja:
     new:
       title: New Post
     posts:
+      delete: 削除
       submit: コメント
     show:
       edit: 編集する

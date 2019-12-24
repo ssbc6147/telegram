@@ -8,6 +8,13 @@ class CommentsController < ApplicationController
             render template: "posts/index"
         end
     end
+
+    def destroy
+        @comment = Comment.find(params[:id])
+        @comment.destroy
+        redirect_to posts_path, notice: "コメントを削除しました。"
+    end
+
     private
 
     def comment_params
