@@ -19,7 +19,19 @@
           <hr>
           <div class="scroll">
             <%= @post.caption %>
+            <% @post.comments.each do |comment| %>
+              <p>
+                <%= image_tag comment.user.avatar.variant(combine_options: { resize: "20x20^", crop: "20x20+0+0", gravity: :center }).processed, class: "img-fluid rounded-circle" %>
+                <%= comment.user.name %>
+                <%= truncate(comment.body, length: 30) %>
+              </p>
+            <% end %>
           </div>
+          <%= form_with model: @comment, url: comments_path, class: "form-group row mx-auto ", local: true do |f|%>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <%= f.text_field :body, class: "col-8 form-control" %>
+          <%= f.submit t(".submit"), class: "col-4" %>
+        <% end %>
         </div>
       </div>
     </div>
@@ -33,5 +45,5 @@
     </p>
   <% end %>
 </div>
-
+​
 <%= render "delete_modal", post: @post %>
