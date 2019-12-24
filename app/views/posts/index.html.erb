@@ -1,5 +1,27 @@
 <div class="col-8 mx-auto">
   <%= render "shared/errors", obj: @comment %>
-  <%= render @posts %>
-  <%= paginate @posts %>
+  <div class="post">
+    <%= render @posts %>
+    <%= paginate @posts %>
+  </div>
 </div>
+
+<script>
+  $(window).on('scroll', function() {
+      // 画面スクロールの判定用の変数を用意
+      scrollHeight = $(document).height();
+      scrollPosition = $(window).height() + $(window).scrollTop();
+      // 画面のスクロールが下部10%以下になったら
+      if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.1) {
+        // .postに対し、jscrollを発火
+        $('.post').jscroll({
+          // 読込中の表示
+          loadingHtml: '<div class="text-center"><img src="http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_blue_48.gif">読み込み中</div>',
+          // 読み込む内容があるリンク
+          nextSelector: 'span.next a',
+          // 読み込む内容がある場所
+          contentSelector: '.post',
+        });
+      }
+  });
+</script>
