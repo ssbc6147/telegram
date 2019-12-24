@@ -1,6 +1,6 @@
 <div class="col-lg-6 mx-auto">
   <div class="col-lg-12 mb-3">
-    <h1 class="text-center logo">Sign Up</h1>
+    <h1 class="text-center logo"><%= t ".title" %></h1>
   </div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -37,7 +37,7 @@
     <div class="form-group">
       <%= f.label :password %>
       <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= t(".minimum_password_length", length: @minimum_password_length) %>)</em>
       <% end %>
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
     </div>
@@ -48,11 +48,11 @@
     </div>
 
     <p class="actions">
-      <%= f.submit "Sign up", class: "btn btn-block btn-primary" %>
+      <%= f.submit t(".sign_up"), class: "btn btn-block btn-primary" %>
     </p>
 
     <p>
-      <%= link_to "Log In", user_session_path, class: "btn btn-block btn-secondary" %>
+      <%= link_to t(".log_in"), user_session_path, class: "btn btn-block btn-secondary" %>
     </p>
   <% end %>
 </div>
