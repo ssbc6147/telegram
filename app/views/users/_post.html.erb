@@ -1,0 +1,5 @@
+<div class="col-4 p-1">
+    <%= link_to post do %>
+        <%= image_tag post.image.variant(combine_options:{ resize: "293x293^", crop: "293x293+0+0",gravity: :center }).processed, class: "img-fluid" %>
+    <% end %>
+</div>

@@ -17,7 +17,7 @@
       <input type="text" name="q" id="q" value="" class="form-control fas" placeholder="検索" >
     </form>
     <% if user_signed_in? %>
-      <%= link_to edit_user_registration_path, class: "nav-item" do %>
+      <%= link_to user_path(current_user), class: "nav-item" do %>
         <i class="far fa-user"></i>
       <% end %>
     <% else %>
