@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_search
+
+  def set_search
+      @q = Post.ransack(params[:q])
+      @posts = @q.result.find_newest_post(params[:page]).with_user_and_comment
+  end
 
   protected
 

@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.find_newest_post(params[:page]).with_user_and_comment
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.find_newest_post(params[:page]).with_user_and_comment
     @comment = Comment.new
   end
 
