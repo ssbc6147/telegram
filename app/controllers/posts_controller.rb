@@ -24,7 +24,8 @@ class PostsController < ApplicationController
     end
   end
 
-  def show    
+  def show 
+    @post = Post.with_attached_image.includes(comments: [user: [ avatar_attachment: :blob ]]).find(params[:id])
     @comment = Comment.new
   end
 
