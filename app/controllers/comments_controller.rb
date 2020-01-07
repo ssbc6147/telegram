@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to posts_path, notice: "コメントを保存しました。"
         else
-            @posts = Post.order(created_at: :desc)
+            @posts = Post.with_attached_image.order(created_at: :desc).page(params[:page]).per(5).includes(user: [avatar_attachment: :blob], comments: [user: [avatar_attachment: :blob]])
             render template: "posts/index"
         end
     end
