@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  paginates_per 5
   has_one_attached :image
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -21,4 +22,6 @@ class Post < ApplicationRecord
   before_save do
     self.image = new_image if new_image
   end
+  scope :find_newest_post, -> (page) { with_attached_image.order(created_at: :desc).page(page) }
+  scope :with_user_and_comment, -> { includes(user: [avatar_attachment: :blob], comments: [user: [avatar_attachment: :blob]]) }
 end

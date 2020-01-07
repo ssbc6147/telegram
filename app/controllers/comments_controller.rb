@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to posts_path, notice: "コメントを保存しました。"
         else
-            @posts = Post.with_attached_image.order(created_at: :desc).page(params[:page]).per(5).includes(user: [avatar_attachment: :blob], comments: [user: [avatar_attachment: :blob]])
+            @posts = Post.find_newest_post(params[:page]).with_user_and_comment
             render template: "posts/index"
         end
     end
